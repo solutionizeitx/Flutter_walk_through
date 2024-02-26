@@ -69,33 +69,6 @@ class DataShow extends StatelessWidget {
                           ],
                         )
                       : const SizedBox()),
-      bottomNavigationBar: Container(
-        height: 100,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(border: Border.all(width: 0.9, color: Colors.black38), color: Colors.white),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            itemsList("Home"),
-            itemsList("API call"),
-            itemsList("Settings"),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget itemsList(String title) {
-    return Container(
-      width: 80,
-      height: 80,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(200), border: Border.all(width: 0.9, color: Colors.black38), color: Colors.white),
-      child: Center(
-        child: Text(
-          title.toString(),
-          style: const TextStyle(color: Colors.black),
-        ),
-      ),
     );
   }
 }
