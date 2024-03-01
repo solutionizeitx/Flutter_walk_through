@@ -1,12 +1,41 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_walk_through/src/page/login_screen.dart';
+import 'package:flutter_walk_through/src/res/pref_data.dart';
 import 'package:flutter_walk_through/src/widget/snack_bar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
   @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  @override
+  void initState() {
+    data();
+    super.initState();
+  }
+
+  String? domain;
+
+  data() async {
+    final prefs = await SharedPreferences.getInstance();
+    domain = prefs.getString(PrefResources.DOMAIN);
+    setState(() {});
+    log("message $domain");
+  }
+
+  final TextEditingController domaincontroller = TextEditingController(text: "http://asd.com");
+
+  @override
   Widget build(BuildContext context) {
+    data();
     return Scaffold(
       backgroundColor: Colors.red[100],
       appBar: AppBar(
@@ -84,11 +113,17 @@ class SettingsScreen extends StatelessWidget {
           SizedBox(height: MediaQuery.of(context).size.height * 0.1),
           const Text("Change current server URL"),
           const SizedBox(height: 5),
-          const Text("http://asd.com"),
+          InkWell(
+              onTap: () {
+                alertBox(context);
+              },
+              child: Text(domain ?? domaincontroller.text)),
           SizedBox(height: MediaQuery.of(context).size.height * 0.43),
           GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => const LoginScreen()));
+            onTap: () async {
+              SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+              sharedPreferences.clear();
+              Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => LoginScreen()));
             },
             child: Container(
               width: 150,
@@ -99,6 +134,37 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  alertBox(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        content: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          height: 50,
+          child: TextFormField(
+            controller: domaincontroller,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+            ),
+          ),
+        ),
+        actions: [
+          ElevatedButton(
+              onPressed: () async {
+                final prefs = await SharedPreferences.getInstance();
+                final value = await prefs.setString(PrefResources.DOMAIN, domaincontroller.text);
+                if (value == true) {
+                  Navigator.pop(context);
+                } else {
+                  showSnackBar(context, "Fill the value");
+                }
+              },
+              child: const Icon(Icons.check))
         ],
       ),
     );
