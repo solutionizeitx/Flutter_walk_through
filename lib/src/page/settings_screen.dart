@@ -55,6 +55,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               onTap: () {
                 Navigator.pop(context);
+                showSimpleModalDialog(context);
               },
             ),
             ListTile(
@@ -68,6 +69,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               onTap: () {
                 Navigator.pop(context);
+                showModalTop(context);
               },
             ),
             ListTile(
@@ -81,6 +83,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               onTap: () {
                 Navigator.pop(context);
+                showBottomModal(context);
               },
             ),
             ListTile(

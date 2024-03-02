@@ -28,6 +28,7 @@ class HomeScreen extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.pop(context);
+                showSimpleModalDialog(context);
               },
             ),
             ListTile(
@@ -41,6 +42,7 @@ class HomeScreen extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.pop(context);
+                showModalTop(context);
               },
             ),
             ListTile(
@@ -54,6 +56,7 @@ class HomeScreen extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.pop(context);
+                showBottomModal(context);
               },
             ),
             ListTile(
@@ -81,28 +84,6 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Row(
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   mainAxisAlignment: MainAxisAlignment.start,
-              //   children: [
-              //     Padding(
-              //       padding: const EdgeInsets.only(right: 10),
-              //       child: GestureDetector(
-              //         onTap: () {
-              //           Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => const SideDrawerScreen()));
-              //         },
-              //         child: Container(
-              //           width: 120,
-              //           height: 80,
-              //           decoration: BoxDecoration(border: Border.all(width: 1, color: Colors.black38), color: Colors.white),
-              //           child: const Center(
-              //             child: Text("Side drawer"),
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-              //   ],
-              // ),
               const SizedBox(height: 10),
               const Text("Horizonal Scroll"),
               SizedBox(

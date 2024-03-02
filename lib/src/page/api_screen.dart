@@ -20,15 +20,16 @@ class _ApiScreenState extends State<ApiScreen> {
   }
 
   String? username;
-
   String? password;
   String? domain;
+  String? cachdata;
 
   data() async {
     final prefs = await SharedPreferences.getInstance();
     username = prefs.getString(PrefResources.Username);
     password = prefs.getString(PrefResources.Password);
     domain = prefs.getString(PrefResources.DOMAIN);
+    cachdata = prefs.getString(PrefResources.CACHDATA);
     setState(() {});
   }
 
@@ -59,6 +60,7 @@ class _ApiScreenState extends State<ApiScreen> {
               ),
               onTap: () {
                 Navigator.pop(context);
+                showSimpleModalDialog(context);
               },
             ),
             ListTile(
@@ -72,6 +74,7 @@ class _ApiScreenState extends State<ApiScreen> {
               ),
               onTap: () {
                 Navigator.pop(context);
+                showModalTop(context);
               },
             ),
             ListTile(
@@ -85,6 +88,7 @@ class _ApiScreenState extends State<ApiScreen> {
               ),
               onTap: () {
                 Navigator.pop(context);
+                showBottomModal(context);
               },
             ),
             ListTile(
@@ -117,7 +121,7 @@ class _ApiScreenState extends State<ApiScreen> {
             SizedBox(height: MediaQuery.of(context).size.height * 0.1),
             Text("user detalis - object - { UserName: ${username ?? "null"},\nPassword: ${password ?? "null"}}"),
             const SizedBox(height: 10),
-            const Text("cached key:1234876"),
+            Text("cached key: $cachdata"),
           ],
         ),
       ),

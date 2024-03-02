@@ -4,4 +4,5 @@ class PrefResources {
   static const Username = "USER_NAME";
   static const Password = "PASSWORD";
   static const DOMAIN = "DOMAIN";
+  static const CACHDATA = "CACHDATA";
 }

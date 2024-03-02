@@ -8,8 +8,6 @@ import 'package:flutter_walk_through/src/res/pref_data.dart';
 import 'package:flutter_walk_through/src/widget/snack_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../widget/widget_show.dart';
-
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
@@ -41,7 +39,8 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => const DataShow(data: 1)));
+                Navigator.pop(context);
+                showSimpleModalDialog(context);
               },
             ),
             ListTile(
@@ -54,7 +53,8 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => const DataShow(data: 2)));
+                Navigator.pop(context);
+                showModalTop(context);
               },
             ),
             ListTile(
@@ -67,7 +67,8 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => const DataShow(data: 3)));
+                Navigator.pop(context);
+                showBottomModal(context);
               },
             ),
             ListTile(
@@ -150,8 +151,9 @@ class LoginScreen extends StatelessWidget {
                         final prefs = await SharedPreferences.getInstance();
                         final value = await prefs.setString(PrefResources.Username, userName.text);
                         final value1 = await prefs.setString(PrefResources.Password, password.text);
+                        final value3 = await prefs.setString(PrefResources.CACHDATA, "1526384");
                         log("value is ${PrefResources.Username} and ${PrefResources.Password}");
-                        if (value || value1 == true) {
+                        if (value || value1 || value3 == true) {
                           Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => const BottomNavigationScreen()));
                         } else {
                           showSnackBar(context, "Fill the value");
