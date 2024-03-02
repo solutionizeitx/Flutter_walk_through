@@ -48,9 +48,9 @@ class _SplashScreenState extends State<SplashScreen> {
     final prefs = await SharedPreferences.getInstance();
     final username = prefs.getString(PrefResources.Username);
     final password = prefs.getString(PrefResources.Password);
-    if (password!.isNotEmpty) {
+    if (password != null) {
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const BottomNavigationScreen()));
-    } else if (username!.isNotEmpty) {
+    } else if (username != null) {
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const BottomNavigationScreen()));
     } else {
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => LoginScreen()));

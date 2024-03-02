@@ -1,7 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_walk_through/src/page/login_screen.dart';
 import 'package:flutter_walk_through/src/res/pref_data.dart';
@@ -28,7 +26,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final prefs = await SharedPreferences.getInstance();
     domain = prefs.getString(PrefResources.DOMAIN);
     setState(() {});
-    log("message $domain");
   }
 
   final TextEditingController domaincontroller = TextEditingController(text: "http://asd.com");

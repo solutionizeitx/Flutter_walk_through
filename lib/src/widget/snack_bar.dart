@@ -8,8 +8,9 @@ void showSnackBar(BuildContext context, String text) {
     ),
     backgroundColor: Colors.black,
     behavior: SnackBarBehavior.floating,
+    duration: const Duration(seconds: 5),
     shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+      borderRadius: BorderRadius.all(Radius.circular(4.0)),
     ),
   );
   ScaffoldMessenger.of(context).showSnackBar(snackBar);

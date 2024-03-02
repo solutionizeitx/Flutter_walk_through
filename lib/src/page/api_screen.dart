@@ -1,6 +1,5 @@
 // ignore_for_file: must_be_immutable
 
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_walk_through/src/res/pref_data.dart';
 import 'package:flutter_walk_through/src/widget/snack_bar.dart';
@@ -31,7 +30,6 @@ class _ApiScreenState extends State<ApiScreen> {
     password = prefs.getString(PrefResources.Password);
     domain = prefs.getString(PrefResources.DOMAIN);
     setState(() {});
-    log("message $username $password $domain");
   }
 
   final TextEditingController domaincontroller = TextEditingController(text: "http://asd.com");
