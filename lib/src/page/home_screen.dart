@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_walk_through/src/page/more_page.dart';
 import 'package:flutter_walk_through/src/widget/snack_bar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -110,17 +111,22 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: 50,
-                child: const Padding(
-                  padding: EdgeInsets.all(12.0),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
                   child: Column(
                     children: [
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Breaking news", style: TextStyle(fontSize: 16)),
-                          Row(
-                            children: [Text("More"), Icon(Icons.add)],
+                          const Text("Breaking news", style: TextStyle(fontSize: 16)),
+                          InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=> const MoreScreen()));
+                            },
+                            child: const Row(
+                              children: [Text("More"), Icon(Icons.add)],
+                            ),
                           ),
                         ],
                       )
